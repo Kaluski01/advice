@@ -1,46 +1,84 @@
-// let count = 0
-
-// function generateAdvice (){
-//     const target = document.getElementById ('advice')
-    
-//     const countDisplay=document.getElementById('count')
-
-//     fetch('https://api.adviceslip.com/advice')
-//         .then(response=>response.json())
-//         .then(data=>{
-//             target.innerHTML = `${data.slip.advice}`
-//             count++
-//             countDisplay.innerHTML = `Advice count :${count} `
-// })
-
-// .catch(error => {
-//     target.innerHTML = 'Error fetching advice! Please try again'
-//     countDisplay.innerHTML= 'Failed to fetch advice'
-//     console.log('Error', error)
-// })
-// }
-
-
 let count = 0; // Initialize counter
 
 // Function to fetch new advice and update UI
 function generateAdvice() {
+    const adviceApi = 'https://api.adviceslip.com/advice'; // Advice API URL
     const target = document.getElementById('advice'); // Element to display advice
     const countDisplay = document.getElementById('count'); // Element to display count
 
-    // Fetch new advice from the API
-    fetch('https://api.adviceslip.com/advice')
+    // Fetch data from the Advice API
+    fetch(adviceApi)
         .then(response => response.json())
         .then(data => {
-            target.innerHTML = `"${data.slip.advice}"`; // Set the new advice
+            const adviceQuote = data.slip.advice; // Extracting advice from API response
+            target.innerHTML = `"${adviceQuote}"`; // Display the advice
 
-                const randomNumber = Math.floor(Math.random()*100)+1  
+            // Generate a random number for the count
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-            countDisplay.innerHTML = `Advice Count: ${randomNumber}`; // Update the count display
+            // Update the count display
+            countDisplay.innerHTML = ` Quote Number: ${randomNumber}`;
+
+            // Generate the image dynamically
+            generateImage(adviceQuote);
         })
         .catch(error => {
-            target.innerHTML = 'Error fetching advice! Please try again'; // Error handling
+            // Error handling
+            target.innerHTML = 'Error fetching advice! Please try again';
             console.log('Error', error);
         });
 }
 
+// Function to generate an image of the advice
+function generateImage(adviceQuote) {
+    const canvas = document.getElementById('quoteCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas background color
+    ctx.fillStyle = '#202631'; // Dark background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Set text style
+    ctx.font = '20px Arial';
+    ctx.fillStyle = '#ffffff'; // White text color
+    ctx.textAlign = 'center';
+
+    // Draw advice text
+    const maxWidth = canvas.width - 40; // Leave padding
+    const lines = wrapText(ctx, adviceQuote, maxWidth);
+    lines.forEach((line, index) => {
+        ctx.fillText(line, canvas.width / 2, 100 + index * 30); // Adjust line spacing
+    });
+
+    // Optional branding
+    ctx.font = '14px Arial';
+    ctx.fillText('Built by Divinus 🎲', canvas.width / 2, canvas.height - 20);
+
+    // Create a download link for the image
+    const link = document.getElementById('downloadImage');
+    link.href = canvas.toDataURL('image/png'); // Convert canvas to image URL
+    link.style.display = 'block'; // Show the download button
+    link.innerHTML = 'Download Quote as an Image'; // Update button text
+}
+
+// Helper function to wrap text for the canvas
+function wrapText(ctx, text, maxWidth) {
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = words[0];
+
+    for (let i = 1; i < words.length; i++) {
+        const testLine = currentLine + ' ' + words[i];
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+
+        if (testWidth > maxWidth) {
+            lines.push(currentLine);
+            currentLine = words[i];
+        } else {
+            currentLine = testLine;
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+}

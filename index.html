@@ -16,31 +16,28 @@
   </style>
 </head>
 <body>
-
-        <div class="main" id="main-part">
-                  <p id="count">Advice count</p>
-                  <br>
-                  <h3 id="advice">Click the the dice to show quotes 👋</h3>
-                  <br>
-                  <div class="hold">
-                    <div class="hold">
-                      <picture>
-                        <source media="(max-width: 767px)" srcset="images/pattern-divider-mobile.svg">
-                        <img src="images/pattern-divider-desktop.svg" alt="Pattern Divider">
-                      </picture>
-                    </div>
-
-                  </div>
-                  <div class="dice" onclick="generateAdvice()">
-                    <img src="images/icon-dice.svg" alt="">
-                  </div>
-                  
-        </div>
-  
-  <!-- <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>. -->
-    <script src="index.js"></script>
+  <div class="main" id="main-part">
+      <p id="count">Quote count</p>
+      <br>
+      <h3 id="advice">Click the dice to show quotes 👋</h3>
+      <p id="bible-verse"></p>
+      <br>
+      <div class="hold">
+          <picture>
+              <source media="(max-width: 767px)" srcset="images/pattern-divider-mobile.svg">
+              <img src="images/pattern-divider-desktop.svg" alt="Pattern Divider">
+          </picture>
+      </div>
+      <div class="dice" onclick="generateAdvice()">
+          <img src="images/icon-dice.svg" alt="">
+      </div>
   </div>
+  <br>
+  <!-- Canvas for generating image -->
+  <canvas id="quoteCanvas" width="600" height="300" style="display: none;"></canvas>
+  <!-- Downloadable link for the generated image -->
+  <a id="downloadImage" download="quote.png" style="display: none;">Download Image</a>
+  <script src="index.js"></script>
 </body>
+
 </html>

@@ -1,20 +1,24 @@
+/* Universal Styles */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-     font-family: manrope;
-
+    font-family: manrope;
 }
 
+/* Body */
 body {
     background-color: #202631;
     height: 100vh;
-    /* margin: 0; */
+    width: 100%;
     display: flex;
     justify-content: center; 
     align-items: center; 
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
+/* Main Container */
 .main {
     height: 250px;
     border-radius: 10px;
@@ -24,26 +28,54 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.main p{
-     color: #50F0A2;
+    animation: fadeInUp 1s ease forwards; /* Add animation */
 }
 
-h3, p {
-    max-width: 100%;  /* Ensures text doesn't overflow */
-    overflow: hidden;
-    /* text-overflow: ellipsis; Adds ellipsis if text is too long */
-    /* white-space: nowrap; Ensures text stays on one line */
-  }
-  
-h3{
+/* Download Link */
+/* For #downloadImage */
+#downloadImage {
+    /* display: block; */
+    /* text-align: center; Center the text */
+    /* gap: 10px; */
+    margin: 5px;
+    color: #52FEAA;
+    text-decoration: none;
+    font-size: 16px;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards; /* Add fade-in animation */
+    animation-delay: 2s; /* Make it appear last */
+}
+
+#downloadImage:hover {
+    color: #ffffff; /* Change color on hover */
+}
+
+/* Main container fade-in */
+.main {
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Animation Keyframes */
+
+
+/* Text and Elements Inside Main */
+.main p {
+    color: #50F0A2;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s; /* Fade in after 0.5 seconds */
+}
+
+.main h3 {
     text-align: center;
     max-width: 80%;
     color: white;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1s; /* Fade in after 1 second */
 }
-.hold img{
-    width: 100%;
-}
+
+/* Dice Button */
 .dice {
     border-radius: 360px;
     background-color: #52FEAA;
@@ -53,10 +85,25 @@ h3{
     justify-content: center; 
     align-items: center;  
     position: relative;
-    top: 44px;    
+    top: 44px;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.25s; /* Fade in after 1.25 seconds */
 }
 
 .dice img {
     max-width: 100%;  
     max-height: 100%;
+}
+
+/* Keyframes for Fade-In Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move to original position */
+    }
 }
