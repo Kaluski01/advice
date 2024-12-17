@@ -52,7 +52,7 @@ function generateImage(adviceQuote) {
 
     // Optional branding
     ctx.font = '14px Arial';
-    ctx.fillText('Built by Divinus 🎲', canvas.width / 2, canvas.height - 20);
+    ctx.fillText('Built by Divine 🎲', canvas.width / 2, canvas.height - 20);
 
     // Create a download link for the image
     const link = document.getElementById('downloadImage');
