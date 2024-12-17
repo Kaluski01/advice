@@ -9,7 +9,7 @@
 body {
     background-color: #202631;
     height: 100vh;
-    margin: 0;
+    /* margin: 0; */
     display: flex;
     justify-content: center; 
     align-items: center; 
@@ -19,7 +19,7 @@ body {
     height: 250px;
     border-radius: 10px;
     background-color: #313A49;
-    width: 35%;
+    max-width: 80%;
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -29,8 +29,34 @@ body {
      color: #50F0A2;
 }
 
+h3, p {
+    max-width: 100%;  /* Ensures text doesn't overflow */
+    overflow: hidden;
+    /* text-overflow: ellipsis; Adds ellipsis if text is too long */
+    /* white-space: nowrap; Ensures text stays on one line */
+  }
+  
 h3{
     text-align: center;
-    width: 50%;
+    max-width: 80%;
     color: white;
+}
+.hold img{
+    width: 100%;
+}
+.dice {
+    border-radius: 360px;
+    background-color: #52FEAA;
+    height: 45px;
+    width: 45px;
+    display: flex;        
+    justify-content: center; 
+    align-items: center;  
+    position: relative;
+    top: 44px;    
+}
+
+.dice img {
+    max-width: 100%;  
+    max-height: 100%;
 }

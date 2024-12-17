@@ -18,9 +18,23 @@
 <body>
 
         <div class="main" id="main-part">
-            <p></p>
-            <h3 id="advice"></h3>
-            
+                  <p id="count">Advice count</p>
+                  <br>
+                  <h3 id="advice">Click the the dice to show quotes 👋</h3>
+                  <br>
+                  <div class="hold">
+                    <div class="hold">
+                      <picture>
+                        <source media="(max-width: 767px)" srcset="images/pattern-divider-mobile.svg">
+                        <img src="images/pattern-divider-desktop.svg" alt="Pattern Divider">
+                      </picture>
+                    </div>
+
+                  </div>
+                  <div class="dice" onclick="generateAdvice()">
+                    <img src="images/icon-dice.svg" alt="">
+                  </div>
+                  
         </div>
   
   <!-- <div class="attribution">
