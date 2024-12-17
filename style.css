@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+     font-family: manrope;
+
+}
+
+body {
+    background-color: #202631;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.main {
+    height: 250px;
+    border-radius: 10px;
+    background-color: #313A49;
+    width: 35%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main p{
+     color: #50F0A2;
+}
+
+h3{
+    text-align: center;
+    width: 50%;
+    color: white;
+}
